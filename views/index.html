@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Data -->
+    <meta charset="UTF-8" />
+    <meta name="author" content="Mahmoud Mheisen" />
+    <meta name="description" content="FCC Course 6 Project 2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- CSS Links -->
+    <link type="text/css" rel="stylesheet" href="style.css" />
+
+    <!-- Title -->
+    <title>Issue Tracker</title>
+
+    <!-- Icon -->
+    <link
+      id="favicon"
+      rel="icon"
+      href="https://hyperdev.com/favicon-app.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header class="center">
+      <h2>Issue Tracker</h2>
+      <p>
+        FreeCodeCamp Information Security and Quality Assurance Course, Project
+        2
+      </p>
+    </header>
+
+    <div class="global">
+      <div id="g1" class="api-test">
+        <p id="label" class="center">
+          <strong>API Test </strong>Submit issue on api_test
+        </p>
+
+        <form id="testForm1" class="container">
+          <label id="f1"><code> POST /api/issues/api_test</code></label>
+          <input
+            id="f2"
+            type="text"
+            name="issue_title"
+            placeholder="*Title"
+            required
+          />
+          <textarea
+            id="f3"
+            type="text"
+            name="issue_text"
+            placeholder="*Text"
+            required
+          ></textarea>
+          <input
+            id="f4"
+            type="text"
+            name="created_by"
+            placeholder="*Created by"
+            required
+          />
+          <input
+            id="f5"
+            type="text"
+            name="assigned_to"
+            placeholder="(opt)Assigned to"
+          />
+          <input
+            id="f6"
+            type="text"
+            name="status_text"
+            placeholder="(opt)Status text"
+          />
+          <button id="f7" type="submit">
+            <i class="fa fa-paper-plane"></i> Submit Issue
+          </button>
+        </form>
+      </div>
+
+      <div id="g2" class="api-test">
+        <p id="label" class="center">
+          <strong>API Test </strong>Update issue on api_test
+        </p>
+        <form id="testForm2" class="container">
+          <label id="f1"><code> PUT /api/issues/api_test</code></label>
+          <input id="f2" type="text" name="_id" placeholder="*_id" required />
+          <input
+            id="f3"
+            type="text"
+            name="issue_title"
+            placeholder="(opt)Title"
+          />
+          <textarea
+            id="f4"
+            type="text"
+            name="issue_text"
+            placeholder="(opt)Text"
+          ></textarea>
+          <input
+            id="f6a1"
+            type="text"
+            name="created_by"
+            placeholder="(opt)Created by"
+          />
+          <input
+            id="f6a2"
+            type="text"
+            name="assigned_to"
+            placeholder="(opt)Assigned to"
+          />
+          <input
+            id="f6b"
+            type="text"
+            name="status_text"
+            placeholder="(opt)Status text"
+          />
+          <label id="f6c"
+            ><input type="checkbox" name="open" value="false" /> Check to close
+            issue</label
+          >
+          <button id="f7b" type="submit">
+            <i class="fa fa-info"></i> Update Issue
+          </button>
+        </form>
+      </div>
+
+      <div id="g3" class="api-test">
+        <p id="label" class="center">
+          <strong>API Test </strong>Delete issue from api_test
+        </p>
+        <form id="testForm3" class="container">
+          <label id="f1"><code> DELETE /api/issues/api_test</code></label>
+          <input id="f2" type="text" name="_id" placeholder="_id" required />
+          <button id="f7c" type="submit">
+            <i class="fa fa-trash"></i> Delete Issue
+          </button>
+        </form>
+      </div>
+
+      <div id="g4" class="api-test-out container">
+        <p id="f1" class="center">
+          <strong>API Test Output </strong>
+        </p>
+        <p id="f2a" class="center">Here is the output</p>
+      </div>
+    </div>
+
+    <div class="center">
+      <h3>Example Project:</h3>
+      <p><a href="/apitest/">Go to /api_test/ project issues</a></p>
+      <h3>Example Usage:</h3>
+      <p>
+        <strong>GET: </strong
+        ><code
+          >GET
+          /api/issues/{project}?[open=][&assigned_to=][&issue_title=][&issue_text=][&created_on=][&updated_on=][...]</code
+        >
+      </p>
+      <p>
+        <strong>{ }</strong> = required, <strong>[ ]</strong> = optional,
+        <strong>[...]</strong> = others, see example return
+      </p>
+      <h3>Example Return:</h3>
+      <code
+        >[{"_id":"5871dda29faedc3491ff93bb","issue_title":"Fix error in posting
+        data","issue_text":"When we post data it has an
+        error.","created_on":"2017-01-08T06:35:14.240Z","updated_on":"2017-01-08T06:35:14.240Z","created_by":"Joe","assigned_to":"Joe","open":true,"status_text":"In
+        QA"},...]</code
+      >
+    </div>
+
+    <footer class="center">
+      <strong> &copy; 2020 Mahmoud Mheisen</strong>
+    </footer>
+
+    <script
+      src="https://code.jquery.com/jquery-2.2.1.min.js"
+      integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(function () {
+        $("#testForm1").submit(function (e) {
+          $.ajax({
+            url: "/api/issues/apitest",
+            type: "post",
+            data: $("#testForm").serialize(),
+            success: function (data) {
+              $("#f2a").text(JSON.stringify(data));
+            },
+          });
+          e.preventDefault();
+        });
+        $("#testForm2").submit(function (e) {
+          $.ajax({
+            url: "/api/issues/apitest",
+            type: "put",
+            data: $("#testForm2").serialize(),
+            success: function (data) {
+              $("#f2a").text(JSON.stringify(data));
+            },
+          });
+          e.preventDefault();
+        });
+        $("#testForm3").submit(function (e) {
+          $.ajax({
+            url: "/api/issues/apitest",
+            type: "delete",
+            data: $("#testForm3").serialize(),
+            success: function (data) {
+              $("#f2a").text(JSON.stringify(data));
+            },
+          });
+          e.preventDefault();
+        });
+      });
+    </script>
+  </body>
+</html>

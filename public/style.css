@@ -1,0 +1,222 @@
+/* Setup */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.4em;
+}
+
+header,
+footer {
+  margin: 20px;
+}
+
+.global {
+  display: grid;
+  grid-template-areas: "PST PUT DEL" "OUT OUT OUT";
+  grid-gap: 10px;
+}
+
+.global > #g1 {
+  grid-area: PST;
+}
+
+.global > #g2 {
+  grid-area: PUT;
+}
+
+.global > #g3 {
+  grid-area: DEL;
+}
+
+.global > #g4 {
+  grid-area: OUT;
+}
+
+.api-test,
+.api-test-out {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 0 5%;
+  padding: 10px 30px;
+  /* max-height: 860px; */
+}
+
+.api-test-out {
+  margin: 0 1%;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Start Form Styling */
+.container {
+  display: grid;
+}
+
+.container > #f1 {
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+  font-weight: bold;
+}
+
+.container > #f2,
+#f2a,
+#f3,
+#f4,
+#f5,
+#f6,
+#f6a1,
+#f6a2,
+#f6b,
+#f6c {
+  padding: 10px 12px;
+  margin: 5px 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.container > #f2a {
+  resize: vertical;
+}
+
+.container > #f2,
+.container > #f2a {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.container > #f3 {
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.container > #f4 {
+  grid-row: 4 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.container > #f5 {
+  grid-row: 5 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.container > #f6 {
+  grid-row: 6 / span 1;
+  grid-column: 1 / span 2;
+}
+
+.container > #f6a1 {
+  grid-row: 6 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.container > #f6a2 {
+  grid-row: 6 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.container > #f6b {
+  grid-row: 7 / span 1;
+  grid-column: 1 / span 1;
+}
+
+.container > #f6c {
+  grid-row: 7 / span 1;
+  grid-column: 2 / span 1;
+}
+
+.container > #f7,
+#f7b,
+#f7c {
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container > #f7 {
+  grid-row: 8 / span 1;
+  grid-column: 1 / span 2;
+  background-color: #4caf50;
+}
+
+.container > #f7:hover {
+  background-color: #45a049;
+}
+
+.container > #f7b {
+  grid-row: 8 / span 1;
+  grid-column: 1 / span 2;
+  background-color: #4079e4;
+}
+
+.container > #f7b:hover {
+  background-color: #0066ff;
+}
+
+.container > #f7c {
+  grid-row: 8 / span 1;
+  grid-column: 1 / span 2;
+  background-color: #e44040;
+}
+
+.container > #f7c:hover {
+  background-color: #ff0000;
+}
+
+/* End Form Styling */
+
+code {
+  font-family: monospace;
+  padding: 2px;
+  font-weight: normal;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+.issue {
+  margin: 20px;
+  padding: 5px;
+  width: 60%;
+  border: 2px solid black;
+}
+
+.closed {
+  background-color: lightgrey;
+}
+
+.id {
+  font-size: 10.5px;
+}
+
+@media screen and (max-width: 850px) {
+  body {
+    font-size: 0.8rem;
+  }
+
+  header {
+    margin: 20px 20px;
+  }
+
+  .api-test {
+    margin: 0 10px;
+  }
+
+  footer {
+    margin: 20px 0;
+  }
+}
