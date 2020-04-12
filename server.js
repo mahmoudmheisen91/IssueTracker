@@ -4,10 +4,14 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let cors = require("cors");
 let helmet = require("helmet");
+let mongo = require("mongodb").MongoClient;
 
 let apiRoutes = require("./routes/api.js");
 let fccTestingRoutes = require("./routes/fcctesting.js");
 let runner = require("./test-runner.js");
+
+process.env.DATABASE =
+  "mongodb+srv://dbMahmoud:asdf3456@cluster0-tpj5i.mongodb.net/test?retryWrites=true&w=majority";
 
 let app = express();
 app.use(helmet());
@@ -34,28 +38,35 @@ app.route("/:project/").get(function (req, res) {
 // For FCC testing purposes
 fccTestingRoutes(app);
 
-// Routing for API
-apiRoutes(app);
+mongo
+  .connect(process.env.DATABASE)
+  .then((client) => {
+    var db = client.db("dbMahmoud");
 
-// Not found middleware:
-app.use((req, res, next) => {
-  return next({ status: 404, message: "not found" });
-});
+    // Routing for API
+    apiRoutes(app, db);
 
-// Start our server and tests!
-const listener = app.listen(3000 || process.env.PORT, () => {
-  console.log("Your app is listening on port " + listener.address().port);
-  if (process.env.NODE_ENV === "test") {
-    console.log("Running Tests...");
-    setTimeout(function () {
-      try {
-        runner.run();
-      } catch (error) {
-        console.log("Tests are not valid:");
-        console.log(error);
+    // Not found middleware:
+    app.use((req, res, next) => {
+      return next({ status: 404, message: "not found" });
+    });
+
+    // Start our server and tests!
+    const listener = app.listen(3000 || process.env.PORT, () => {
+      console.log("Your app is listening on port " + listener.address().port);
+      if (process.env.NODE_ENV === "test") {
+        console.log("Running Tests...");
+        setTimeout(function () {
+          try {
+            runner.run();
+          } catch (error) {
+            console.log("Tests are not valid:");
+            console.log(error);
+          }
+        }, 1500);
       }
-    }, 1500);
-  }
-});
+    });
+  })
+  .catch((err) => console.log(err));
 
 module.exports = app; //for testing

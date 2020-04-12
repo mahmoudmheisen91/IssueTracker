@@ -197,18 +197,19 @@
       $(function () {
         $("#testForm1").submit(function (e) {
           $.ajax({
-            url: "/api/issues/apitest",
+            url: "/api/issues/api_test",
             type: "post",
-            data: $("#testForm").serialize(),
+            data: $("#testForm1").serialize(),
             success: function (data) {
               $("#f2a").text(JSON.stringify(data));
             },
           });
           e.preventDefault();
         });
+
         $("#testForm2").submit(function (e) {
           $.ajax({
-            url: "/api/issues/apitest",
+            url: "/api/issues/api_test",
             type: "put",
             data: $("#testForm2").serialize(),
             success: function (data) {
@@ -217,9 +218,10 @@
           });
           e.preventDefault();
         });
+
         $("#testForm3").submit(function (e) {
           $.ajax({
-            url: "/api/issues/apitest",
+            url: "/api/issues/api_test",
             type: "delete",
             data: $("#testForm3").serialize(),
             success: function (data) {
