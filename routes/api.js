@@ -47,6 +47,23 @@ module.exports = function (app, db) {
     })
 
     .delete(function (req, res) {
-      var project = req.params.project;
+      let project = req.params.project;
+      let _id = req.body._id;
+
+      if (!_id) {
+        res.send("id error");
+        res.end();
+      } else {
+        let issue = { _id: new ObjectId(_id) };
+        db.collection(project).findAndRemove(issue, (err, doc) => {
+          if (err) {
+            res.send("could not delete " + _id);
+            res.end();
+          } else {
+            res.send("deleted " + _id);
+            res.end();
+          }
+        });
+      }
     });
 };
