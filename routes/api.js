@@ -9,7 +9,23 @@ module.exports = function (app, db) {
     .route("/api/issues/:project")
 
     .get(function (req, res) {
-      var project = req.params.project;
+      let project = req.params.project;
+
+      let issue = req.query;
+      if (issue._id) {
+        issue._id = new ObjectId(issue._id);
+      }
+
+      db.collection(project)
+        .find(issue)
+        .toArray((err, doc) => {
+          if (err) {
+            res.redirect("/");
+          } else {
+            res.json(doc);
+            res.end();
+          }
+        });
     })
 
     .post(function (req, res) {
