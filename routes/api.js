@@ -43,7 +43,7 @@ module.exports = function (app, db) {
 
       let error = "Missing Data";
       if (!issue.issue_title || !issue.issue_text || !issue.created_by) {
-        res.send(error);
+        res.status(404).type("text").send(error);
         res.end();
       } else {
         db.collection(project).insertOne(issue, (err, doc) => {
@@ -67,7 +67,7 @@ module.exports = function (app, db) {
         created_by: req.body.created_by || "",
         assigned_to: req.body.assigned_to || "",
         status_text: req.body.status_text || "",
-        open: req.body.open || "",
+        open: req.body.open || false,
       };
 
       for (let item in issue) {
@@ -78,7 +78,7 @@ module.exports = function (app, db) {
 
       let error = "no updated field sent";
       if (!Object.keys(issue).length) {
-        res.send(error);
+        res.status(404).type("text").send(error);
         res.end();
       } else {
         issue.updated_on = new Date();
@@ -90,7 +90,10 @@ module.exports = function (app, db) {
           { new: true },
           (err, doc) => {
             if (err) {
-              res.send("could not update " + _id);
+              res
+                .status(400)
+                .type("text")
+                .send("could not update " + _id);
               res.end();
             } else {
               res.send("successfully updated");
@@ -106,13 +109,16 @@ module.exports = function (app, db) {
       let _id = req.body._id;
 
       if (!_id) {
-        res.send("id error");
+        res.status(404).type("text").send("id error");
         res.end();
       } else {
         let issue = { _id: new ObjectId(_id) };
-        db.collection(project).findAndRemove(issue, (err, doc) => {
+        db.collection(project).findOneAndDelete(issue, (err, doc) => {
           if (err) {
-            res.send("could not delete " + _id);
+            res
+              .status(400)
+              .type("text")
+              .send("could not delete " + _id);
             res.end();
           } else {
             res.send("deleted " + _id);
