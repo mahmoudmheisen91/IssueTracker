@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // CSS/HTML (Index page, static HTML/CSS):
-app.use(express.static("public"));
+app.use("/public", express.static(__dirname + "/public"));
 app.route("/").get((req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });

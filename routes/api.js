@@ -12,6 +12,10 @@ module.exports = function (app, db) {
       let project = req.params.project;
 
       let issue = req.query;
+      if (issue.open) {
+        issue.open = String(issue.open) == "true";
+      }
+
       if (issue._id) {
         issue._id = new ObjectId(issue._id);
       }
@@ -74,6 +78,10 @@ module.exports = function (app, db) {
         if (issue[item] === "" || issue[item] === false) {
           delete issue[item];
         }
+      }
+
+      if (issue.open) {
+        issue.open = String(issue.open) == "true";
       }
 
       let error = "no updated field sent";
