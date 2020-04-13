@@ -96,18 +96,39 @@ suite("Functional Tests", function () {
 
   suite("PUT /api/issues/{project} => text", function () {
     test("No body", function (done) {
-      assert.fail();
-      done();
+      chai
+        .request(server)
+        .put("/api/issues/test")
+        .send({ _id })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.text, "no updated field sent");
+          done();
+        });
     });
 
     test("One field to update", function (done) {
-      assert.fail();
-      done();
+      chai
+        .request(server)
+        .put("/api/issues/test")
+        .send({ _id, issue_title: "Title" })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.text, "successfully updated");
+          done();
+        });
     });
 
     test("Multiple fields to update", function (done) {
-      assert.fail();
-      done();
+      chai
+        .request(server)
+        .put("/api/issues/test")
+        .send({ _id, issue_title: "Title", issue_text: "text" })
+        .end(function (err, res) {
+          assert.equal(res.status, 200);
+          assert.equal(res.text, "successfully updated");
+          done();
+        });
     });
   });
 

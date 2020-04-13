@@ -71,14 +71,14 @@ module.exports = function (app, db) {
       };
 
       for (let item in issue) {
-        if (issue[item] === "") {
+        if (issue[item] === "" || issue[item] === false) {
           delete issue[item];
         }
       }
 
       let error = "no updated field sent";
       if (!Object.keys(issue).length) {
-        res.status(404).type("text").send(error);
+        res.send(error);
         res.end();
       } else {
         issue.updated_on = new Date();
